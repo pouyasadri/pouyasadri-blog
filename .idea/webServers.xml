@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b06a61d9-426c-4e88-8909-a856a3a2a07a" name="blogs.pouyasadri.com" url="http://blogs.pouyasadi.com">
+        <fileTransfer accessType="SFTP" host="access915720406.webspace-data.io" port="22" sshConfigId="50db5719-0a5a-4b0f-bfde-e0f449ab9518" sshConfig="u108837968@access915720406.webspace-data.io:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
