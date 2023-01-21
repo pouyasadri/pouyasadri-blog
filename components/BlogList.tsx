@@ -18,11 +18,11 @@ function BlogList({posts}: Props) {
           <ClientSideRoute key={post._id}  route={`/post/${post.slug.current}`}>
             <div  className='flex flex-col group cursor-pointer'>
               <div className='relative w-full h-80 drop-shadow-xl
-          group-hover:scale-105 transition-transform duration-200 ease-out'>
+          group-hover:scale-x-105 transition-transform duration-200 ease-out'>
                 <Image className='object-cover object-left lg:object-center' src={urlFor(post.mainImage).url()}
                        alt={post.author.name} fill />
                 <div className='absolute bottom-0 w-full bg-opacity-20
-              bg-[#000000] backdrop-blur-lg rounded drop-shadow-lg text-white p-5 flex justify-between'>
+              bg-[#000000] backdrop-blur-lg group-hover:scale-y-100 rounded drop-shadow-lg text-white p-5 flex justify-between'>
                   <div className='text-[#E6E6E6]'>
                     <p className='font-bold '>{post.title}</p>
                     <p>
