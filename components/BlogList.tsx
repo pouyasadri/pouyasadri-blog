@@ -19,7 +19,7 @@ function BlogList({posts}: Props) {
             <div  className='flex flex-col group cursor-pointer'>
               <div className='relative w-full h-80 drop-shadow-xl
           group-hover:scale-x-105 transition-transform duration-200 ease-out'>
-                <Image className='object-cover object-left lg:object-center' src={urlFor(post.mainImage).url()}
+                <Image className='object-fill object-left lg:object-center' src={urlFor(post.mainImage).url()}
                        alt={post.author.name} fill />
                 <div className='absolute bottom-0 w-full bg-opacity-20
               bg-[#000000] backdrop-blur-lg group-hover:scale-y-100 rounded drop-shadow-lg text-white p-5 flex justify-between'>
@@ -38,7 +38,8 @@ function BlogList({posts}: Props) {
                     </p>
                   </div>
                   <div className='flex flex-col md:flex-row md:flex-wrap gap-y-2 md:gap-x-2 md:ml-5 items-center'>
-                    {post.categories.map(category => (
+                    {
+                      post.categories.map(category => (
                       <div key={category._id} className='bg-[#fca311] text-center text-black px-3 py-1 rounded-full text-sm md:text-xs font-semibold '>
                         <p className='text-[#14213d]'>{category.title}</p>
                       </div>
