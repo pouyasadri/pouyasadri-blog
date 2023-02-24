@@ -6,17 +6,18 @@ import BreadCrumb from './BreadCrumb'
 
 type Props = {
   posts: Post[];
+  lang: string;
 };
 
-function BlogList({posts}: Props) {
+function BlogList({posts,lang}: Props) {
   return (
     <div>
-      <BreadCrumb title={""}/>
+      <BreadCrumb title={''} />
       <hr className='border-[#8d99ae] mb-10' />
       <div className='grid grid-cols-1 md:grid-cols-2 px-10 gap-10 gap-y-16 pb-24'>
         {posts.map(post => (
-          <ClientSideRoute key={post._id}  route={`/post/${post.slug.current}`}>
-            <div  className='flex flex-col group cursor-pointer'>
+          <ClientSideRoute key={post._id} route={`${lang}/post/${post.slug.current}`}>
+            <div className='flex flex-col group cursor-pointer'>
               <div className='relative w-full h-80 drop-shadow-xl
           group-hover:scale-x-105 transition-transform duration-200 ease-out'>
                 <Image className='object-fill object-left lg:object-center' src={urlFor(post.mainImage).url()}
@@ -40,10 +41,11 @@ function BlogList({posts}: Props) {
                   <div className='flex flex-col md:flex-row md:flex-wrap gap-y-2 md:gap-x-2 md:ml-5 items-center'>
                     {
                       post.categories.map(category => (
-                      <div key={category._id} className='bg-[#fca311] text-center text-black px-3 py-1 rounded-full text-sm md:text-xs font-semibold '>
-                        <p className='text-[#14213d]'>{category.title}</p>
-                      </div>
-                    ))}
+                        <div key={category._id}
+                             className='bg-[#fca311] text-center text-black px-3 py-1 rounded-full text-sm md:text-xs font-semibold '>
+                          <p className='text-[#14213d]'>{category.title}</p>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -59,7 +61,7 @@ function BlogList({posts}: Props) {
           </ClientSideRoute>
         ))}
       </div>
-      {posts.length > 6 ?
+      {posts.length > 20 ?
         <nav aria-label='Page navigation example' className='justify-center text-center mx-auto p-5'>
           <ul className='inline-flex -space-x-px'>
             <li>

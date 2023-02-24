@@ -1,12 +1,17 @@
 import {previewData} from 'next/headers'
 import {groq} from 'next-sanity'
-import {client} from '../../lib/sanity.client'
+import {client} from '../../../lib/sanity.client'
 import {PreviewSuspense} from '@sanity/preview-kit'
-import BlogList from '../../components/BlogList'
-import PreviewBlogList from '../../components/PreviewBlogList'
+import BlogList from '../../../components/BlogList'
+import PreviewBlogList from '../../../components/PreviewBlogList'
 import Head from 'next/head'
 import Script from 'next/script'
 
+type Props = {
+  params: {
+    lang: string;
+  };
+};
 const query = groq`
   *[_type == 'post']{
     ...,
@@ -14,8 +19,15 @@ const query = groq`
     categories[]->
     
   }| order(_createdAt desc)`
+const french_query = groq`
+  *[_type == 'french_post']{
+    ...,
+    author->,
+    categories[]->
+    
+  }| order(_createdAt desc)`
 export const revalidate = 120
-export default async function HomePage() {
+export default async function HomePage({params: {lang}}: Props) {
   if (previewData()) {
     return (
       <PreviewSuspense fallback={
@@ -29,12 +41,12 @@ export default async function HomePage() {
       </PreviewSuspense>
     )
   }
-  const posts = await client.fetch(query)
+  const posts = await client.fetch(lang === 'en' ? query : french_query)
   return (
     <div>
       <Head>
         <meta charSet='utf-8' />
-        <title >2</title>
+        <title>2</title>
         <meta content='width=device-width, initial-scale=1' name='viewport' />
         <link rel='icon' href='/favicon.ico' />
         <meta name='author' content='Pouyasadri' />
@@ -76,7 +88,7 @@ export default async function HomePage() {
           })(window, document, 'clarity', 'script', 'cn7jcfr1te');`}
         </Script>
       </Head>
-      <BlogList posts={posts} />
+      <BlogList posts={posts} lang={lang} />
     </div>
   )
 }
