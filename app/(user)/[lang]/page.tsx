@@ -43,10 +43,10 @@ export default async function HomePage({params: {lang}}: Props) {
   }
   const posts = await client.fetch(lang === 'en' ? query : french_query)
   return (
+    <>
     <div>
       <Head>
         <meta charSet='utf-8' />
-        <title>2</title>
         <meta content='width=device-width, initial-scale=1' name='viewport' />
         <link rel='icon' href='/favicon.ico' />
         <meta name='author' content='Pouyasadri' />
@@ -90,6 +90,7 @@ export default async function HomePage({params: {lang}}: Props) {
       </Head>
       <BlogList posts={posts} lang={lang} />
     </div>
+    </>
   )
 }
 

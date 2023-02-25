@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import DefaultTags from './DefaultTags'
 
 export default function Head() {

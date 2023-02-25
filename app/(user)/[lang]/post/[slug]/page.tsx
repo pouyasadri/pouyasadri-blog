@@ -8,26 +8,27 @@ import BreadCrumb from '../../../../../components/BreadCrumb'
 
 type Props = {
   params: {
+    lang: string;
     slug: string;
   };
 };
 export const revalidate = 120
 
-export async function generateStaticParams() {
-  const query = groq`
-  *[_type=='post']
-  {
-  slug
-  }
-  `
-  const slugs: Post[] = await client.fetch(query)
-  const slugRoutes = slugs.map((slug) => slug.slug.current)
-  return slugRoutes.map((slug) => ({
-    slug
-  }))
-}
+// export async function generateStaticParams() {
+//   const query = groq`
+//   *[_type=='post']
+//   {
+//   slug
+//   }
+//   `
+//   const slugs: Post[] = await client.fetch(query)
+//   const slugRoutes = slugs.map((slug) => slug.slug.current)
+//   return slugRoutes.map((slug) => ({
+//     slug
+//   }))
+// }
 
-async function Post({params: {slug}}: Props) {
+async function Post({params: {slug, lang}}: Props) {
   const query = groq`
   *[_type=='post' && slug.current == $slug][0]
   {
@@ -36,7 +37,15 @@ async function Post({params: {slug}}: Props) {
   categories[]->
   }
   `
-  const post: Post = await client.fetch(query, {slug})
+  const french_query = groq`
+  *[_type=='french_post' && slug.current == $slug][0]
+  {
+  ...,
+  author->,
+  categories[]->
+  }
+  `
+  const post: Post = await client.fetch(lang === 'en' ? query : french_query, {slug})
   return (
     <div>
       <BreadCrumb title={post.title} />

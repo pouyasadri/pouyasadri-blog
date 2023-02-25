@@ -1,6 +1,6 @@
 import {groq} from 'next-sanity'
-import {client} from '../../../../../lib/sanity.client'
-import DefaultTags from '../../../../DefaultTags'
+import {client} from '../../../lib/sanity.client'
+import DefaultTags from '../../DefaultTags'
 
 type Props = {
   params: {
