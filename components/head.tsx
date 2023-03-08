@@ -1,6 +1,6 @@
 import {groq} from 'next-sanity'
-import {client} from '../../../../../lib/sanity.client'
-import DefaultTags from '../../../../DefaultTags'
+import {client} from '../lib/sanity.client'
+import DefaultTags from '../app/DefaultTags'
 
 type Props = {
   params: {
@@ -26,7 +26,7 @@ export default async function Head({params: {slug,lang}}: Props) {
   categories[]->
   }
   `
-  const post: Post = await client.fetch(lang=== 'en' ? query : french_query, {slug})
+  const post: Post = await client.fetch(lang === 'en' ? query : french_query, {slug})
   return (
     <>
       <DefaultTags/>

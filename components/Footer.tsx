@@ -2,11 +2,13 @@ import localFont from '@next/font/local'
 
 const surt = localFont({
   src: './fonts/Agustina.woff',
-  variable:'--font-inter',
+  variable: '--font-inter',
   display: 'swap'
 })
 
-function Footer() {
+function Footer({lang}: {lang: String}) {
+  const today = new Date();
+  const year = today.getFullYear();
   return (
     <footer className='p-4 sm:p-6'>
       <div className='md:flex md:justify-between'>
@@ -18,18 +20,21 @@ function Footer() {
         </div>
         <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
           <div>
-            <h3 className='mb-6 text-sm font-semibold text-[#14213d] uppercase'>Links</h3>
+            <h3 className='mb-6 text-sm font-semibold text-[#14213d] uppercase'>{lang === 'en' ? 'Links' : 'Liens'}</h3>
             <ul className='text-[#5A6377]'>
               <li className='mb-4'>
-                <a href='https://www.pouyasadri.com/' className='hover:underline'>My website</a>
+                <a href='https://www.pouyasadri.com/'
+                   className='hover:underline'>{lang === 'en' ? 'My website' : 'Mon site web'}</a>
               </li>
               <li>
-                <a href='mailto:info@pouyasadri.com' className='hover:underline'>Contact Me</a>
+                <a href='mailto:info@pouyasadri.com'
+                   className='hover:underline'>{lang === 'en' ? 'Contact Me' : 'Me contacter'}</a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className='mb-6 text-sm font-semibold text-[#14213d] uppercase '>Follow me</h2>
+            <h2
+              className='mb-6 text-sm font-semibold text-[#14213d] uppercase '>{lang === 'en' ? 'Follow me' : 'Suivez-moi'}</h2>
             <ul className='text-[#5A6377]'>
               <li className='mb-4'>
                 <a href='https://github.com/pouyasadri' target='_blank' className='hover:underline '>Github</a>
@@ -81,8 +86,8 @@ function Footer() {
             <span className='sr-only'>GitHub account</span>
           </a>
         </div>
-        <span className='text-sm text-[#5A6377] sm:text-center sm:mt-1'>© 2023 <a href='https://www.pouyasadri.com'
-                                                                                  className='hover:underline hover:text-[#fca311]'>PouyaSadri™</a>. All Rights Reserved.
+        <span className='text-sm text-[#5A6377] sm:text-center sm:mt-1'>© {year} <a href='https://www.pouyasadri.com'
+                                                                                  className='hover:underline hover:text-[#fca311]'>PouyaSadri™</a>.{lang === 'en' ? ' All Rights Reserved.' : ' Tous droits réservés.'}
         </span>
       </div>
     </footer>

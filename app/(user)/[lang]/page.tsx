@@ -52,8 +52,6 @@ export default async function HomePage({params: {lang}}: Props) {
         <meta name='author' content='Pouyasadri' />
         <meta property='og:url' content='https://blog.pouyasadri.com/' />
         <meta property='og:type' content='website' />
-        <meta name='description'
-              content='Unlock the doors to an exciting and ever-evolving developer world on the hottest and most informative developer blog out there. Join us as we delve into the latest technologies, programming languages, and industry trends, providing you with the tools and knowledge you need to take your skills to the next level. From beginner to expert, our expertly curated content will provide you with the resources you need to unlock your full potential as a developer. So, join us today and discover the infinite possibilities of the developer world!' />
         <link rel='apple-touch-icon' sizes='180x180' href='/icons/apple-touch-icon.png' />
         <link rel='icon' type='image/png' sizes='192x192' href='/icons/android-chrome-192x192.png' />
         <link rel='icon' type='image/png' sizes='512x512' href='/icons/android-chrome-512x512.png' />

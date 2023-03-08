@@ -11,5 +11,5 @@ export default function PreviewBlogList({query}: Props) {
   return (
     <div>
       <h3>Preview Data</h3>
-      <BlogList posts={posts} /></div>)
+      <BlogList posts={posts} lang={'en'} /></div>)
 }

@@ -12,7 +12,7 @@ type Props = {
 function BlogList({posts,lang}: Props) {
   return (
     <div>
-      <BreadCrumb title={''} />
+      <BreadCrumb title={''} lang={lang} />
       <hr className='border-[#8d99ae] mb-10' />
       <div className='grid grid-cols-1 md:grid-cols-2 px-10 gap-10 gap-y-16 pb-24'>
         {posts.map(post => (
@@ -53,10 +53,17 @@ function BlogList({posts,lang}: Props) {
                 <p className='underline text-lg font-bold text-[#14213d]'>{post.title}</p>
                 <p className='line-clamp-2 text-gray-500 text-[#5A6377]'>{post.description}</p>
               </div>
+              {lang === 'en'?
               <p className='mt-5 font-bold flex items-center group-hover:underline text-[#14213d]'>
                 Read Post
                 <ArrowUpRightIcon className='ml-2 h-4 w-4' />
               </p>
+                :
+                <p className='mt-5 font-bold flex items-center group-hover:underline text-[#14213d]'>
+                  Lire l'article
+                  <ArrowUpRightIcon className='ml-2 h-4 w-4' />
+                </p>
+              }
             </div>
           </ClientSideRoute>
         ))}

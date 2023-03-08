@@ -14,19 +14,20 @@ type Props = {
 };
 export const revalidate = 120
 
-// export async function generateStaticParams() {
-//   const query = groq`
-//   *[_type=='post']
-//   {
-//   slug
-//   }
-//   `
-//   const slugs: Post[] = await client.fetch(query)
-//   const slugRoutes = slugs.map((slug) => slug.slug.current)
-//   return slugRoutes.map((slug) => ({
-//     slug
-//   }))
-// }
+export async function generateStaticParams() {
+  const query = groq`
+  *[_type=='post']
+  {
+  slug
+  }
+  `
+  const slugs: Post[] = await client.fetch(query)
+  const slugRoutes = slugs.map((slug) => slug.slug.current)
+  return slugRoutes.map((slug) => ({
+    slug,
+    lang : 'en'
+  }))
+}
 
 async function Post({params: {slug, lang}}: Props) {
   const query = groq`
@@ -48,7 +49,7 @@ async function Post({params: {slug, lang}}: Props) {
   const post: Post = await client.fetch(lang === 'en' ? query : french_query, {slug})
   return (
     <div>
-      <BreadCrumb title={post.title} />
+      <BreadCrumb lang={lang} title={post.title} />
       <article className='px-10 pb-28'>
         <section className='space-y-2 border border-[#fca311] text-white'>
           <div className='relative min-h-56 flex flex-col md:flex-row justify-between'>

@@ -17,9 +17,9 @@ export default function RootLayout({
     <head />
     <body className='max-w-7xl mx-auto bg-[#E5E5E5]'>
     <Header />
-    <Banner />
+    <Banner lang={params.lang} />
     {children}
-    <Footer />
+    <Footer lang={params.lang} />
     </body>
     </html>
   )
